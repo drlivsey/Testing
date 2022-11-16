@@ -31,8 +31,8 @@ namespace Project.Coords
         public Point PositionToCoords(Vector3 position)
         {
             var positionPoint = new Point(position.x, position.y);
-            var oxLine = m_axisOX.GetAxisLine();
-            var oyLine = m_axisOY.GetAxisLine();
+            var oxLine = m_axisOX.AxisLine;
+            var oyLine = m_axisOY.AxisLine;
 
             var oxPointLine = Line.GetParallelLine(oxLine, positionPoint);
             var oyPointLine = Line.GetParallelLine(oyLine, positionPoint);

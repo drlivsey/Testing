@@ -17,6 +17,29 @@ namespace Project.Coords
         [SerializeField] private LineRenderer m_axisRenderer;
         [SerializeField] private Division m_divisionPrefab;
 
+        public float AxisAngle => GetAxleAngle();
+        public Line AxisLine => GetAxisLine();
+        
+        public float DivisionValue
+        {
+            get => m_valueOnDivision;
+            set
+            {
+                m_valueOnDivision = value;
+                UpdateDivisions();
+            }
+        }
+
+        public float DivisionsDensity
+        {
+            get => m_pixelsPerUnit;
+            set 
+            {
+                m_pixelsPerUnit = value;
+                UpdateDivisions();
+            }
+        }
+        
         public event UnityAction OnAxisRepainted;
 
         private List<Division> m_divisions;
@@ -68,24 +91,11 @@ namespace Project.Coords
         public float GetAxleAngle()
         {
             var indentityLine = new Line(new Point(-1f, 0f), new Point(1f, 0f));
-            var axisLine = GetAxisLine();
-            var angle = Line.GetAngleBetween(indentityLine, axisLine);
+            var angle = Line.GetAngleBetween(indentityLine, AxisLine);
 
             angle = angle > 90f ? angle - 180f : angle;
 
             return m_controlPoint.PointPosition.Y >= 0f ? angle : -angle;
-        }
-
-        public void SetValueOnDivision(float value)
-        {
-            m_valueOnDivision = value;
-            UpdateDivisions();
-        }
-
-        public void SetPixelsPerUnit(float value)
-        {
-            m_pixelsPerUnit = value;
-            UpdateDivisions();
         }
 
         private void InitializeComponent()

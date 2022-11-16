@@ -20,6 +20,12 @@ namespace Project
         [SerializeField] private UnityEvent m_onMoveEnd;
 
         public float CurrentMoveDuration => m_currentMoveDuration;
+        public float Speed
+        {
+            get => m_speed;
+            set => m_speed = value;
+        }
+
         public UnityEvent OnMoveBegin => m_onMoveBegin;
         public UnityEvent OnMoveEnd => m_onMoveEnd;
 
@@ -76,11 +82,6 @@ namespace Project
         {
             m_currentPointIndex = -1;
             m_target.localPosition = Vector3.zero;
-        }
-
-        public void SetSpeed(float speed)
-        {
-            m_speed = speed;
         }
 
         private IEnumerator MoveByPath(IEnumerable<MovingPointInfo> pathPointsInfo)

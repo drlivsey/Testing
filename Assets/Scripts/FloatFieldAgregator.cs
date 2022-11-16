@@ -7,12 +7,12 @@ using TMPro;
 namespace Project
 {
     [RequireComponent(typeof(TMP_InputField))]
-    public class SpeedFieldAgregator : MonoBehaviour
+    public class FloatFieldAgregator : MonoBehaviour
     {
         [SerializeField] private TMP_InputField m_inputField;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent<float> m_onSpeedChanged;
+        [SerializeField] private UnityEvent<float> m_onValueChanged;
 
         private void Awake()
         {
@@ -37,7 +37,7 @@ namespace Project
         {
             if (float.TryParse(m_inputField.text, out var value))
             {
-                m_onSpeedChanged?.Invoke(value);
+                m_onValueChanged?.Invoke(value);
             }
         }
     }
