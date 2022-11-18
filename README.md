@@ -1,5 +1,3 @@
-# Testing
-
 # Coordinates System, links with 3D environment
 
 # 2D Model
