@@ -14,6 +14,8 @@ namespace Project.Coords
         [SerializeField] private Axis m_axisOX;
         [SerializeField] private Axis m_axisOY;
 
+        public Line OXAxisLine => m_axisOX.AxisLine;
+        public Line OYAxisLine => m_axisOY.AxisLine;
         public event UnityAction OnAxisRepainted;
 
         private void OnEnable()
@@ -41,11 +43,6 @@ namespace Project.Coords
             var oyIntersectionPoint = Line.GetIntersectionPoint(oyLine, oxPointLine);
             
             return new Point(m_axisOX.CoordToValue(oxIntersectionPoint), m_axisOY.CoordToValue(oyIntersectionPoint));
-        }
-
-        public Vector3 CoordsToPosition(Point coords)
-        {
-            return Vector3.zero; //new Vector3(m_axisOX.CoordToPosition(coords.X), m_axisOY.CoordToPosition(coords.Y), 0f);
         }
     }
 }

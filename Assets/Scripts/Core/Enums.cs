@@ -13,4 +13,14 @@ namespace Project.Core
     {
         OX, OY
     }
+
+    public enum CoordinatesPlaneType
+    {
+        XOY, XOZ, YOZ
+    }
+
+    public enum DelayType
+    {
+        Default, Realtime
+    }
 }

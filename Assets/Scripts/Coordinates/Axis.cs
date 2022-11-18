@@ -19,7 +19,7 @@ namespace Project.Coords
 
         public float AxisAngle => GetAxleAngle();
         public Line AxisLine => GetAxisLine();
-        
+
         public float DivisionValue
         {
             get => m_valueOnDivision;
@@ -27,6 +27,7 @@ namespace Project.Coords
             {
                 m_valueOnDivision = value;
                 UpdateDivisions();
+                OnAxisRepainted?.Invoke();
             }
         }
 
@@ -37,6 +38,7 @@ namespace Project.Coords
             {
                 m_pixelsPerUnit = value;
                 UpdateDivisions();
+                OnAxisRepainted?.Invoke();
             }
         }
         
@@ -48,7 +50,6 @@ namespace Project.Coords
         private void Awake()
         {
             InitializeComponent();
-            InstantiateDivisions();
         }
 
         private void OnEnable()
@@ -65,10 +66,9 @@ namespace Project.Coords
             m_controlPoint.onPointMoved -= RepaintLine;
         }
 
-        public Vector3 ValueToCoord(float value)
+        public float ValueToCoord(float value)
         {
-            return Vector3.zero;
-            //return m_pixelsPerUnit * value / m_valueOnDivision;
+            return value / m_valueOnDivision * m_pixelsPerUnit;
         }
 
         public float CoordToValue(Point point)

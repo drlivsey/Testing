@@ -28,7 +28,7 @@ namespace Project.Coords
         {
             if (!m_isCaptured) return;
 
-            this.transform.localPosition += new Vector3(eventData.delta.x, eventData.delta.y, 0f);
+            this.transform.localPosition = (this.transform.parent as RectTransform).InverseTransformPoint(eventData.pointerCurrentRaycast.worldPosition);
             onPointMoved?.Invoke();
         }
 
