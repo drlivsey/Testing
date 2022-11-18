@@ -7,7 +7,7 @@ using TMPro;
 namespace Project.UI
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class UITextOpacityTweener : MonoBehaviour
+    public class UITextOpacityTweener : BaseUITweener
     {
         [SerializeField] private TMP_Text m_textElement;
         [SerializeField] private float m_duration = 1f;
@@ -36,17 +36,17 @@ namespace Project.UI
             StopCoroutine(m_movingRoutine);
         }
 
-        public void MoveForward()
+        public override void MoveForward()
         {
             MoveToPoint(m_endOpacity, m_duration);
         }
 
-        public void MoveBackwards()
+        public override void MoveBackwards()
         {
             MoveToPoint(m_beginOpacity, m_duration);
         }
 
-        public void Reset()
+        public override void Reset()
         {
             var textColor = m_textElement.color;
             m_textElement.color = new Color(textColor.r, textColor.g, textColor.b, m_beginOpacity);

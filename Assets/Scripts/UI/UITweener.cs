@@ -7,7 +7,7 @@ using Project.Core;
 
 namespace Project.UI
 {
-    public class UITweener : MonoBehaviour
+    public class UITweener : BaseUITweener
     {
         [SerializeField] private float m_duration = 1f;
         [SerializeField] private CoordinatesTypes m_coordinatesSystem = CoordinatesTypes.Local;
@@ -38,17 +38,17 @@ namespace Project.UI
             StopCoroutine(m_movingRoutine);
         }
 
-        public void MoveForward()
+        public override void MoveForward()
         {
             MoveToPoint(m_targetPosition, m_duration);
         }
 
-        public void MoveBackwards()
+        public override void MoveBackwards()
         {
             MoveToPoint(m_defaultPosition, m_duration);
         }
 
-        public void Reset()
+        public override void Reset()
         {
             if (m_coordinatesSystem == CoordinatesTypes.Local) {
                 m_target.localPosition = m_defaultPosition;
